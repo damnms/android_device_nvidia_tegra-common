@@ -43,10 +43,21 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE               := wpa_supplicant_overlay.conf
 LOCAL_MODULE_CLASS         := ETC
-LOCAL_SRC_FILES            := wpa_supplicant_overlay.conf
 LOCAL_VENDOR_MODULE        := true
 LOCAL_MODULE_RELATIVE_PATH := wifi
+ifeq ($(TARGET_TEGRA_WIFI_NO_PMF),true)
+# Chips without 802.11w support: with the default pmf=1 (optional),
+# wpa_supplicant negotiates PMF with capable APs and the association fails
+# (APs then reject reconnects with status 30).
+include $(BUILD_SYSTEM)/base_rules.mk
+$(LOCAL_BUILT_MODULE): $(LOCAL_PATH)/wpa_supplicant_overlay.conf
+	@mkdir -p $(dir $@)
+	$(hide) cat $< > $@
+	$(hide) echo "pmf=0" >> $@
+else
+LOCAL_SRC_FILES            := wpa_supplicant_overlay.conf
 include $(BUILD_PREBUILT)
+endif
 
 ifneq ("$(wildcard kernel/nvidia/wireguard)","")
 include $(LOCAL_PATH)/wireguard.mk
