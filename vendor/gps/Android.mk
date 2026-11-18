@@ -42,4 +42,8 @@ LOCAL_MODULE_OWNER         := nvidia
 LOCAL_VENDOR_MODULE        := true
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_VINTF_FRAGMENTS      := android.hardware.gnss@1.0-service.xml
+# The blob's DT_SONAME is gps.broadcommmandroid.so. The gnss HAL loads it by
+# path (hw_get_module), so the name does not matter at runtime, but
+# check_elf_files insists on SONAME == file name.
+LOCAL_CHECK_ELF_FILES      := false
 include $(BUILD_NVIDIA_COMMON_PREBUILT)
