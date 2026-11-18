@@ -38,6 +38,10 @@ ifeq ($(TARGET_TEGRA_CEC),nvhdmi)
 $(call inherit-product, $(LOCAL_PATH)/hdmi/hdmi.mk)
 endif
 
+ifeq ($(TARGET_TEGRA_GPS),brcm)
+$(call inherit-product, $(LOCAL_PATH)/gps/gps.mk)
+endif
+
 ifeq ($(TARGET_TEGRA_KEYSTORE),nvkeystore)
 $(call inherit-product, $(LOCAL_PATH)/keystore/keystore.mk)
 $(call inherit-product, $(LOCAL_PATH)/security/security.mk)
