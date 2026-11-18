@@ -1,0 +1,9 @@
+# /data/system/gps holds the pipes between glgps and the gps.brcm HAL module
+# and the gps state; the path is fixed in both blobs. It is core data, and
+# vendor_init may not create directories in /data/system, so this file lives
+# in /system/etc/init and runs in the init domain. mkdir also fixes the owner
+# and mode of an existing directory; restorecon relabels one that older
+# builds left as system_data_file.
+on post-fs-data
+    mkdir /data/system/gps 0770 gps system
+    restorecon_recursive /data/system/gps

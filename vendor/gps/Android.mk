@@ -47,3 +47,11 @@ LOCAL_VINTF_FRAGMENTS      := android.hardware.gnss@1.0-service.xml
 # check_elf_files insists on SONAME == file name.
 LOCAL_CHECK_ELF_FILES      := false
 include $(BUILD_NVIDIA_COMMON_PREBUILT)
+
+# Not a vendor module: vendor_init may not create /data/system/gps
+include $(CLEAR_VARS)
+LOCAL_MODULE               := gps_data.rc
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_SRC_FILES            := gps_data.rc
+LOCAL_MODULE_RELATIVE_PATH := init
+include $(BUILD_PREBUILT)

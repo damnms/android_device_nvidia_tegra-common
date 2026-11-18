@@ -1,8 +1,4 @@
-on post-fs-data
-    #create gps files
-    mkdir /data/system/gps
-    chown gps system /data/system/gps/
-    chmod 0770 /data/system/gps/
+# /data/system/gps comes from gps_data.rc in /system/etc/init
 
 service start-gps /vendor/bin/gps_select.sh
     class main
