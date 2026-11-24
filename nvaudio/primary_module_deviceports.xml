@@ -46,7 +46,8 @@
         <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                  samplingRates="8000,16000" channelMasks="AUDIO_CHANNEL_OUT_MONO"/>
     </devicePort>
-    <devicePort tagName="AUX Digital" type="AUDIO_DEVICE_OUT_AUX_DIGITAL" role="sink">
+    <devicePort tagName="AUX Digital" type="AUDIO_DEVICE_OUT_AUX_DIGITAL" role="sink"
+                address="controller=0;stream=0">
         <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                  samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
     </devicePort>
