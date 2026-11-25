@@ -15,6 +15,13 @@
 COMMON_NVCPL_PATH := vendor/nvidia/common/nvcpl
 
 PRODUCT_PACKAGES += \
-    NvCPLSvc \
     vendor.nvidia.hardware.cpl.service@1.0-service \
     vendor.nvidia.hardware.cpl.service_common@1.0-service
+
+# NvCPLSvc needs vendor.nvidia.hardware.graphics.display@1.0::INvDisplay from the
+# nvidia composer. Devices on the AOSP composer can opt out, otherwise the app
+# crashes in a loop.
+ifneq ($(TARGET_TEGRA_NVCPL_APP),false)
+PRODUCT_PACKAGES += \
+    NvCPLSvc
+endif
