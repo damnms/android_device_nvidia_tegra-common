@@ -40,6 +40,10 @@ ifneq ("$(wildcard $(LOCAL_PATH)/$(TARGET_TEGRA_CEC)/hdmi/hdmi.mk)","")
 include $(LOCAL_PATH)/$(TARGET_TEGRA_CEC)/hdmi/hdmi.mk
 endif
 
+ifeq ($(TARGET_TEGRA_GPS),brcm)
+include $(LOCAL_PATH)/gps/gps.mk
+endif
+
 ifneq ("$(wildcard $(LOCAL_PATH)/$(TARGET_TEGRA_MEMTRACK)/memtrack/memtrack.mk)","")
 include $(LOCAL_PATH)/$(TARGET_TEGRA_MEMTRACK)/memtrack/memtrack.mk
 endif
